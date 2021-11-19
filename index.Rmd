@@ -159,7 +159,7 @@ def contagem(i):
     print(f"{i:2}...")
     if i <= 1: # caso base
         print("Lá vou eu!")
-    else: # caso recursivo, com o decremento nescessário
+    else: # caso recursivo, com o decremento necessário
         contagem(i-1)
 
 ```
@@ -184,7 +184,11 @@ contagem_2(10)
 ]
 ---
 ### Pilha de Recursão
-
+Você pode ter percebido que ao invés de ter rodado sem parar, o exemplo sem o caso base retornou um **erro de recursão**:
+```
+## RecursionError: maximum recursion depth exceeded
+```
+Isso se deve à forma pela qual o Python lida com as chamadas de funções recursivas. Há um limite no tamanho da pilha que é formada com as chamadas e se ele for excedido a execução para com o erro. É uma forma de proteger a memória do computador. Em outras linguagens o tamanho da pilha pode variar e o modo como esse problema é tratado também, mas em geral uma pilha é montada com as chamadas das funções recursivas.
 ---
 
 ### As "3 leis da recursão"
