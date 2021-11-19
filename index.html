@@ -188,7 +188,7 @@ contagem_2(10)
 ##   File "&lt;string&gt;", line 3, in contagem_2
 ##   File "&lt;string&gt;", line 3, in contagem_2
 ##   File "&lt;string&gt;", line 3, in contagem_2
-##   [Previous line repeated 993 more times]
+##   [Previous line repeated 994 more times]
 ##   File "&lt;string&gt;", line 2, in contagem_2
 ```
 ]
@@ -199,8 +199,8 @@ Você pode ter percebido que ao invés de ter rodado sem parar, o exemplo sem o 
 ```
 ## RecursionError: maximum recursion depth exceeded
 ```
-Isso se deve à forma pela qual o Python lida com as chamadas de funções recursivas. Há um limite no tamanho da pilha que é formada com as chamadas e se ele for excedido a execução para com o erro. É uma forma de proteger a memória do computador. Em outras linguagens o tamanho da pilha pode variar e o modo como esse problema é tratado também, mas em geral uma pilha é montada com as chamadas das funções recursivas.
-
+Isso se deve à forma pela qual o Python lida com as chamadas de funções recursivas. Há um limite no tamanho da pilha que é formada com as chamadas e se ele for excedido a execução para com o erro. É uma forma de proteger a memória do computador. Em outras linguagens o tamanho da pilha pode variar e o modo como esse problema é tratado também, mas em geral uma pilha é montada com as chamadas das funções recursivas. O tamanho da pilha pode ser um empecilho também a depender 
+do problema que se busca solucionar (assunto de Algoritmos e Estrutura de Dados) e uma solução _iterativa_ acaba sendo mais interessante.
 --
 
 #### Então, como entender essa tal pilha?
@@ -249,15 +249,100 @@ print(fatorial(3))
 ]
 ]
 ---
-### Pilha de Recursão
+### Pilha de Recursão desenho
 
 
 ---
-### Pilha de Recursão
+### Pilha de Recursão desenho
 
 
 ---
-### Pilha de Recursão
+### Pilha de Recursão desenho
+
+
+---
+### Exemplos
+.panelset[
+.panel[.panel-name[Fibonacci]
+
+```python
+def fibonacci(n):
+    if n &lt;= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(5))
+## 5
+```
+]
+.panel[.panel-name[Fibo com contador]
+
+```python
+count = 0
+def fibonacci(n):
+    global count
+    count +=1
+    if n &lt;= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(5), count)
+## 5 15
+```
+]
+.panel[.panel-name[Pilha estourando]
+
+```python
+print(fibonacci(1000), count)
+## Error in py_call_impl(callable, dots$args, dots$keywords): RecursionError: maximum recursion depth exceeded in comparison
+## 
+## Detailed traceback:
+##   File "&lt;string&gt;", line 1, in &lt;module&gt;
+##   File "&lt;string&gt;", line 7, in fibonacci
+##   File "&lt;string&gt;", line 7, in fibonacci
+##   File "&lt;string&gt;", line 7, in fibonacci
+##   [Previous line repeated 994 more times]
+##   File "&lt;string&gt;", line 4, in fibonacci
+```
+]
+.panel[.panel-name[Fibo mais robusto, com contador]
+
+```python
+count = 0
+def fibonacci(n, t1 = 1, res = 0):
+    global count    
+    if n &gt; 1:
+        count +=1
+        res = fibonacci(n - 1, res, t1 + res)
+    return res
+
+print(fibonacci(6), count)
+## 5 5
+```
+]
+.panel[.panel-name[Nova tentativa]
+
+```python
+print(fibonacci(2000), count)
+## Error in py_call_impl(callable, dots$args, dots$keywords): RecursionError: maximum recursion depth exceeded in comparison
+## 
+## Detailed traceback:
+##   File "&lt;string&gt;", line 1, in &lt;module&gt;
+##   File "&lt;string&gt;", line 5, in fibonacci
+##   File "&lt;string&gt;", line 5, in fibonacci
+##   File "&lt;string&gt;", line 5, in fibonacci
+##   [Previous line repeated 994 more times]
+##   File "&lt;string&gt;", line 3, in fibonacci
+```
+]
+]
+
+
+
+
+
 
 
 ---

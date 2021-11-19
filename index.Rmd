@@ -188,8 +188,8 @@ Você pode ter percebido que ao invés de ter rodado sem parar, o exemplo sem o 
 ```
 ## RecursionError: maximum recursion depth exceeded
 ```
-Isso se deve à forma pela qual o Python lida com as chamadas de funções recursivas. Há um limite no tamanho da pilha que é formada com as chamadas e se ele for excedido a execução para com o erro. É uma forma de proteger a memória do computador. Em outras linguagens o tamanho da pilha pode variar e o modo como esse problema é tratado também, mas em geral uma pilha é montada com as chamadas das funções recursivas.
-
+Isso se deve à forma pela qual o Python lida com as chamadas de funções recursivas. Há um limite no tamanho da pilha que é formada com as chamadas e se ele for excedido a execução para com o erro. É uma forma de proteger a memória do computador. Em outras linguagens o tamanho da pilha pode variar e o modo como esse problema é tratado também, mas em geral uma pilha é montada com as chamadas das funções recursivas. O tamanho da pilha pode ser um empecilho também a depender 
+do problema que se busca solucionar (assunto de Algoritmos e Estrutura de Dados) e uma solução _iterativa_ acaba sendo mais interessante.
 --
 
 #### Então, como entender essa tal pilha?
@@ -200,43 +200,110 @@ No primeiro código temos uma possibilidade de função recursiva para cálculo 
 .panelset[
 .panel[.panel-name[Fatorial]
 ```{python, collapse = TRUE}
-def fatorial(n):
+def fatorial_1(n):
     if n == 1:
         return 1
     else:
-        return n * fatorial(n - 1)
+        return n * fatorial_1(n - 1)
 
-print(fatorial(3))
+print(fatorial_1(3))
 ```
 ]
 .panel[.panel-name[Fatorial modificado]
 .tiny[
 ```{python, collapse = TRUE}
-def fatorial(n):
+def fatorial_2(n):
     print(f"Calculando o fatorial de {n}")
     if n == 1 or n == 0:
         print(f" fatorial de {n} = 1")
         return 1
     else:
-        fat = n * fatorial(n - 1)
+        fat = n * fatorial_2(n - 1)
         print(f" fatorial de {n} = {fat}")
     return fat
 
-print(fatorial(3))
+print(fatorial_2(3))
 ```
 ]
 ]
 ]
 ---
-### Pilha de Recursão
+### Pilha de Recursão desenho
 
 
 ---
-### Pilha de Recursão
+### Pilha de Recursão desenho
 
 
 ---
-### Pilha de Recursão
+### Pilha de Recursão desenho
+
+
+---
+### Exemplos
+.panelset[
+.panel[.panel-name[Fibonacci]
+```{python, collapse = TRUE}
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(5))
+```
+]
+.panel[.panel-name[Fibo com contador]
+```{python, collapse = TRUE}
+from timeit import default_timer as timer
+
+count = 0
+def fibonacci(n):
+    global count
+    count +=1
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+        
+start = timer()
+print(fibonacci(5), count)
+end = timer()
+```
+]
+.panel[.panel-name[Pilha estourando]
+```{python, collapse = TRUE, error = TRUE}
+print(fibonacci(505), count)
+```
+]
+.panel[.panel-name[Fibo mais robusto, com contador]
+```{python, collapse = TRUE}
+from timeit import default_timer as timer
+
+count = 0
+def fibonacci(n, t1 = 1, res = 0):
+    global count    
+    if n > 1:
+        count +=1
+        res = fibonacci(n - 1, res, t1 + res)
+    return res
+
+start = timer()
+print(fibonacci(6), count, end - start)
+end = timer()
+```
+]
+.panel[.panel-name[Nova tentativa]
+```{python, collapse = TRUE, error = TRUE}
+print(fibonacci(1000), count)
+```
+]
+]
+
+
+
+
+
 
 
 ---
