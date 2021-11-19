@@ -189,8 +189,57 @@ Você pode ter percebido que ao invés de ter rodado sem parar, o exemplo sem o 
 ## RecursionError: maximum recursion depth exceeded
 ```
 Isso se deve à forma pela qual o Python lida com as chamadas de funções recursivas. Há um limite no tamanho da pilha que é formada com as chamadas e se ele for excedido a execução para com o erro. É uma forma de proteger a memória do computador. Em outras linguagens o tamanho da pilha pode variar e o modo como esse problema é tratado também, mas em geral uma pilha é montada com as chamadas das funções recursivas.
----
 
+--
+
+#### Então, como entender essa tal pilha?
+Podemos usar o cálculo do fatorial e um pouco de desenho.
+---
+### Pilha de Recursão
+No primeiro código temos uma possibilidade de função recursiva para cálculo do fatorial. No segundo, temos uma alternativa que mostra como funcionaria a pilha de recursão.
+.panelset[
+.panel[.panel-name[Fatorial]
+```{python, collapse = TRUE}
+def fatorial(n):
+    if n == 1:
+        return 1
+    else:
+        return n * fatorial(n - 1)
+
+print(fatorial(3))
+```
+]
+.panel[.panel-name[Fatorial modificado]
+.tiny[
+```{python, collapse = TRUE}
+def fatorial(n):
+    print(f"Calculando o fatorial de {n}")
+    if n == 1 or n == 0:
+        print(f" fatorial de {n} = 1")
+        return 1
+    else:
+        fat = n * fatorial(n - 1)
+        print(f" fatorial de {n} = {fat}")
+    return fat
+
+print(fatorial(3))
+```
+]
+]
+]
+---
+### Pilha de Recursão
+
+
+---
+### Pilha de Recursão
+
+
+---
+### Pilha de Recursão
+
+
+---
 ### As "3 leis da recursão"
 A partir dos exemplos ilustrativos anteriores, podemos então definir 3 regras básicas (ou características) para que uma função seja de fato recursiva:
 
@@ -200,321 +249,321 @@ A partir dos exemplos ilustrativos anteriores, podemos então definir 3 regras b
 
 3. deve **chamar a si mesmo**, recursivamente.
 
----
-## Typography
+<!-- --- -->
+<!-- ## Typography -->
 
-Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`.
+<!-- Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`. -->
 
-[Link to another slide](#colors).
+<!-- [Link to another slide](#colors). -->
 
-### Lorem Ipsum
+<!-- ### Lorem Ipsum -->
 
-Dolor imperdiet nostra sapien scelerisque praesent curae metus facilisis dignissim tortor. 
-Lacinia neque mollis nascetur neque urna velit bibendum. 
-Himenaeos suspendisse leo varius mus risus sagittis aliquet venenatis duis nec.
+<!-- Dolor imperdiet nostra sapien scelerisque praesent curae metus facilisis dignissim tortor.  -->
+<!-- Lacinia neque mollis nascetur neque urna velit bibendum.  -->
+<!-- Himenaeos suspendisse leo varius mus risus sagittis aliquet venenatis duis nec. -->
 
-- Dolor cubilia nostra nunc sodales
+<!-- - Dolor cubilia nostra nunc sodales -->
 
-- Consectetur aliquet mauris blandit
+<!-- - Consectetur aliquet mauris blandit -->
 
-- Ipsum dis nec porttitor urna sed
+<!-- - Ipsum dis nec porttitor urna sed -->
 
----
-name: colors
+<!-- --- -->
+<!-- name: colors -->
 
-## Colors
+<!-- ## Colors -->
 
-.left-column[
-Text color
+<!-- .left-column[ -->
+<!-- Text color -->
 
-[Link Color](#3)
+<!-- [Link Color](#3) -->
 
-**Bold Color**
+<!-- **Bold Color** -->
 
-_Italic Color_
+<!-- _Italic Color_ -->
 
-`Inline Code`
-]
+<!-- `Inline Code` -->
+<!-- ] -->
 
-.right-column[
-Lorem ipsum dolor sit amet, [consectetur adipiscing elit (link)](#3), 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Erat nam at lectus urna.
-Pellentesque elit ullamcorper **dignissim cras tincidunt (bold)** lobortis feugiat. 
-_Eros donec ac odio tempor_ orci dapibus ultrices. 
-Id porta nibh venenatis cras sed felis eget velit aliquet.
-Aliquam id diam maecenas ultricies mi.
-Enim sit amet 
-`code_color("inline")`
-venenatis urna cursus eget nunc scelerisque viverra.
-]
+<!-- .right-column[ -->
+<!-- Lorem ipsum dolor sit amet, [consectetur adipiscing elit (link)](#3),  -->
+<!-- sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  -->
+<!-- Erat nam at lectus urna. -->
+<!-- Pellentesque elit ullamcorper **dignissim cras tincidunt (bold)** lobortis feugiat.  -->
+<!-- _Eros donec ac odio tempor_ orci dapibus ultrices.  -->
+<!-- Id porta nibh venenatis cras sed felis eget velit aliquet. -->
+<!-- Aliquam id diam maecenas ultricies mi. -->
+<!-- Enim sit amet  -->
+<!-- `code_color("inline")` -->
+<!-- venenatis urna cursus eget nunc scelerisque viverra. -->
+<!-- ] -->
 
----
+<!-- --- -->
 
-# Big Topic or Inverse Slides `#`
+<!-- # Big Topic or Inverse Slides `#` -->
 
-## Slide Headings `##`
+<!-- ## Slide Headings `##` -->
 
-### Sub-slide Headings `###`
+<!-- ### Sub-slide Headings `###` -->
 
-#### Bold Call-Out `####`
+<!-- #### Bold Call-Out `####` -->
 
-This is a normal paragraph text. Only use header levels 1-4.
+<!-- This is a normal paragraph text. Only use header levels 1-4. -->
 
-##### Possible, but not recommended `#####`
+<!-- ##### Possible, but not recommended `#####` -->
 
-###### Definitely don't use h6 `######`
+<!-- ###### Definitely don't use h6 `######` -->
 
----
+<!-- --- -->
 
-# Left-Column Headings
+<!-- # Left-Column Headings -->
 
-.left-column[
-## First
+<!-- .left-column[ -->
+<!-- ## First -->
 
-## Second
+<!-- ## Second -->
 
-## Third
-]
+<!-- ## Third -->
+<!-- ] -->
 
-.right-column[
-Dolor quis aptent mus a dictum ultricies egestas.
+<!-- .right-column[ -->
+<!-- Dolor quis aptent mus a dictum ultricies egestas. -->
 
-Amet egestas neque tempor fermentum proin massa!
+<!-- Amet egestas neque tempor fermentum proin massa! -->
 
-Dolor elementum fermentum pharetra lectus arcu pulvinar.
-]
+<!-- Dolor elementum fermentum pharetra lectus arcu pulvinar. -->
+<!-- ] -->
 
----
-class: inverse center middle
+<!-- --- -->
+<!-- class: inverse center middle -->
 
-# Topic Changing Interstitial
+<!-- # Topic Changing Interstitial -->
 
---
+<!-- -- -->
 
-```
-class: inverse center middle
-```
+<!-- ``` -->
+<!-- class: inverse center middle -->
+<!-- ``` -->
 
----
-layout: true
+<!-- --- -->
+<!-- layout: true -->
 
-## Blocks
+<!-- ## Blocks -->
 
----
+<!-- --- -->
 
-### Blockquote
+<!-- ### Blockquote -->
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+<!-- > This is a blockquote following a header. -->
+<!-- > -->
+<!-- > When something is important enough, you do it even if the odds are not in your favor. -->
 
----
+<!-- --- -->
 
-### Code Blocks
+<!-- ### Code Blocks -->
 
-#### R Code
+<!-- #### R Code -->
 
-```{r eval=FALSE}
-ggplot(gapminder) +
-  aes(x = gdpPercap, y = lifeExp, size = pop, color = country) +
-  geom_point() +
-  facet_wrap(~year)
-```
+<!-- ```{r eval=FALSE} -->
+<!-- ggplot(gapminder) + -->
+<!--   aes(x = gdpPercap, y = lifeExp, size = pop, color = country) + -->
+<!--   geom_point() + -->
+<!--   facet_wrap(~year) -->
+<!-- ``` -->
 
-#### JavaScript
+<!-- #### JavaScript -->
 
-```js
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+<!-- ```js -->
+<!-- var fun = function lang(l) { -->
+<!--   dateformat.i18n = require('./lang/' + l) -->
+<!--   return true; -->
+<!-- } -->
+<!-- ``` -->
 
----
+<!-- --- -->
 
-### More R Code
+<!-- ### More R Code -->
 
-```{r eval=FALSE}
-dplyr::starwars %>% dplyr::slice_sample(n = 4)
-```
+<!-- ```{r eval=FALSE} -->
+<!-- dplyr::starwars %>% dplyr::slice_sample(n = 4) -->
+<!-- ``` -->
 
----
+<!-- --- -->
 
-```{r message=TRUE, eval=requireNamespace("cli", quietly = TRUE)}
-cli::cli_alert_success("It worked!")
-```
+<!-- ```{r message=TRUE, eval=requireNamespace("cli", quietly = TRUE)} -->
+<!-- cli::cli_alert_success("It worked!") -->
+<!-- ``` -->
 
---
+<!-- -- -->
 
-```{r message=TRUE}
-message("Just a friendly message")
-```
+<!-- ```{r message=TRUE} -->
+<!-- message("Just a friendly message") -->
+<!-- ``` -->
 
---
+<!-- -- -->
 
-```{r warning=TRUE}
-warning("This could be bad...")
-```
+<!-- ```{r warning=TRUE} -->
+<!-- warning("This could be bad...") -->
+<!-- ``` -->
 
---
+<!-- -- -->
 
-```{r error=TRUE}
-stop("I hope you're sitting down for this")
-```
+<!-- ```{r error=TRUE} -->
+<!-- stop("I hope you're sitting down for this") -->
+<!-- ``` -->
 
 
----
-layout: true
+<!-- --- -->
+<!-- layout: true -->
 
-## Tables
+<!-- ## Tables -->
 
----
-exclude: `r if (requireNamespace("tibble", quietly=TRUE)) "false" else "true"`
+<!-- --- -->
+<!-- exclude: `r if (requireNamespace("tibble", quietly=TRUE)) "false" else "true"` -->
 
-```{r eval=requireNamespace("tibble", quietly=TRUE)}
-tibble::as_tibble(mtcars)
-```
+<!-- ```{r eval=requireNamespace("tibble", quietly=TRUE)} -->
+<!-- tibble::as_tibble(mtcars) -->
+<!-- ``` -->
 
----
+<!-- --- -->
 
-```{r}
-knitr::kable(head(mtcars), format = 'html')
-```
+<!-- ```{r} -->
+<!-- knitr::kable(head(mtcars), format = 'html') -->
+<!-- ``` -->
 
----
-exclude: `r if (requireNamespace("DT", quietly=TRUE)) "false" else "true"`
+<!-- --- -->
+<!-- exclude: `r if (requireNamespace("DT", quietly=TRUE)) "false" else "true"` -->
 
-```{r eval=requireNamespace("DT", quietly=TRUE)}
-DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4))
-```
+<!-- ```{r eval=requireNamespace("DT", quietly=TRUE)} -->
+<!-- DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4)) -->
+<!-- ``` -->
 
----
-layout: true
+<!-- --- -->
+<!-- layout: true -->
 
-## Lists
+<!-- ## Lists -->
 
----
+<!-- --- -->
 
-.pull-left[
-#### Here is an unordered list:
+<!-- .pull-left[ -->
+<!-- #### Here is an unordered list: -->
 
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-]
+<!-- *   Item foo -->
+<!-- *   Item bar -->
+<!-- *   Item baz -->
+<!-- *   Item zip -->
+<!-- ] -->
 
-.pull-right[
+<!-- .pull-right[ -->
 
-#### And an ordered list:
+<!-- #### And an ordered list: -->
 
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-]
+<!-- 1.  Item one -->
+<!-- 1.  Item two -->
+<!-- 1.  Item three -->
+<!-- 1.  Item four -->
+<!-- ] -->
 
----
+<!-- --- -->
 
-### And a nested list:
+<!-- ### And a nested list: -->
 
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
+<!-- - level 1 item -->
+<!--   - level 2 item -->
+<!--   - level 2 item -->
+<!--     - level 3 item -->
+<!--     - level 3 item -->
+<!-- - level 1 item -->
+<!--   - level 2 item -->
+<!--   - level 2 item -->
+<!--   - level 2 item -->
+<!-- - level 1 item -->
+<!--   - level 2 item -->
+<!--   - level 2 item -->
+<!-- - level 1 item -->
 
----
+<!-- --- -->
 
-### Nesting an ol in ul in an ol
+<!-- ### Nesting an ol in ul in an ol -->
 
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-  1. level 4 item (ol)
-  1. level 4 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
+<!-- - level 1 item (ul) -->
+<!--   1. level 2 item (ol) -->
+<!--   1. level 2 item (ol) -->
+<!--     - level 3 item (ul) -->
+<!--     - level 3 item (ul) -->
+<!-- - level 1 item (ul) -->
+<!--   1. level 2 item (ol) -->
+<!--   1. level 2 item (ol) -->
+<!--     - level 3 item (ul) -->
+<!--     - level 3 item (ul) -->
+<!--   1. level 4 item (ol) -->
+<!--   1. level 4 item (ol) -->
+<!--     - level 3 item (ul) -->
+<!--     - level 3 item (ul) -->
+<!-- - level 1 item (ul) -->
 
----
-layout: true
+<!-- --- -->
+<!-- layout: true -->
 
-## Plots
+<!-- ## Plots -->
 
----
+<!-- --- -->
 
-```{r plot-example, eval=requireNamespace("ggplot2", quietly=TRUE)}
-library(ggplot2)
-(g <- ggplot(mpg) + aes(hwy, cty, color = class) + geom_point())
-```
+<!-- ```{r plot-example, eval=requireNamespace("ggplot2", quietly=TRUE)} -->
+<!-- library(ggplot2) -->
+<!-- (g <- ggplot(mpg) + aes(hwy, cty, color = class) + geom_point()) -->
+<!-- ``` -->
 
----
+<!-- --- -->
 
-```{r plot-example-themed, eval=requireNamespace("ggplot2", quietly=TRUE)}
-g + xaringanthemer::theme_xaringan(text_font_size = 16, title_font_size = 18) +
-  ggtitle("A Plot About Cars")
-```
+<!-- ```{r plot-example-themed, eval=requireNamespace("ggplot2", quietly=TRUE)} -->
+<!-- g + xaringanthemer::theme_xaringan(text_font_size = 16, title_font_size = 18) + -->
+<!--   ggtitle("A Plot About Cars") -->
+<!-- ``` -->
 
----
-layout: false
+<!-- --- -->
+<!-- layout: false -->
 
-## Square image
+<!-- ## Square image -->
 
-<center><img src="https://octodex.github.com/images/labtocat.png" height="400px" /></center>
+<!-- <center><img src="https://octodex.github.com/images/labtocat.png" height="400px" /></center> -->
 
-.footnote[GitHub Octocat]
+<!-- .footnote[GitHub Octocat] -->
 
----
+<!-- --- -->
 
-### Wide image
+<!-- ### Wide image -->
 
-![](https://guides.github.com/activities/hello-world/branching.png)
+<!-- ![](https://guides.github.com/activities/hello-world/branching.png) -->
 
-.footnote[Wide images scale to 100% slide width]
+<!-- .footnote[Wide images scale to 100% slide width] -->
 
----
+<!-- --- -->
 
-## Two images
+<!-- ## Two images -->
 
-.pull-left[
-![](https://octodex.github.com/images/motherhubbertocat.png)
-]
+<!-- .pull-left[ -->
+<!-- ![](https://octodex.github.com/images/motherhubbertocat.png) -->
+<!-- ] -->
 
-.pull-right[
-![](https://octodex.github.com/images/dinotocat.png)
-]
+<!-- .pull-right[ -->
+<!-- ![](https://octodex.github.com/images/dinotocat.png) -->
+<!-- ] -->
 
----
+<!-- --- -->
 
-### Definition lists can be used with HTML syntax.
+<!-- ### Definition lists can be used with HTML syntax. -->
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
+<!-- <dl> -->
+<!-- <dt>Name</dt> -->
+<!-- <dd>Godzilla</dd> -->
+<!-- <dt>Born</dt> -->
+<!-- <dd>1952</dd> -->
+<!-- <dt>Birthplace</dt> -->
+<!-- <dd>Japan</dd> -->
+<!-- <dt>Color</dt> -->
+<!-- <dd>Green</dd> -->
+<!-- </dl> -->
 
 ---
 class: center, middle

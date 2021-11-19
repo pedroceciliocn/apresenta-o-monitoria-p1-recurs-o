@@ -19,15 +19,6 @@
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Press Ctrl+C to Copy"})</script>
     <link href="index_files/font-awesome/css/all.css" rel="stylesheet" />
     <link href="index_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
-    <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
-    <link href="index_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="index_files/datatables-binding/datatables.js"></script>
-    <script src="index_files/jquery/jquery-3.6.0.min.js"></script>
-    <link href="index_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="index_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
-    <script src="index_files/dt-core/js/jquery.dataTables.min.js"></script>
-    <link href="index_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
-    <script src="index_files/crosstalk/js/crosstalk.min.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -209,8 +200,67 @@ Você pode ter percebido que ao invés de ter rodado sem parar, o exemplo sem o 
 ## RecursionError: maximum recursion depth exceeded
 ```
 Isso se deve à forma pela qual o Python lida com as chamadas de funções recursivas. Há um limite no tamanho da pilha que é formada com as chamadas e se ele for excedido a execução para com o erro. É uma forma de proteger a memória do computador. Em outras linguagens o tamanho da pilha pode variar e o modo como esse problema é tratado também, mas em geral uma pilha é montada com as chamadas das funções recursivas.
----
 
+--
+
+#### Então, como entender essa tal pilha?
+Podemos usar o cálculo do fatorial e um pouco de desenho.
+---
+### Pilha de Recursão
+No primeiro código temos uma possibilidade de função recursiva para cálculo do fatorial. No segundo, temos uma alternativa que mostra como funcionaria a pilha de recursão.
+.panelset[
+.panel[.panel-name[Fatorial]
+
+```python
+def fatorial(n):
+    if n == 1:
+        return 1
+    else:
+        return n * fatorial(n - 1)
+
+print(fatorial(3))
+## 6
+```
+]
+.panel[.panel-name[Fatorial modificado]
+.tiny[
+
+```python
+def fatorial(n):
+    print(f"Calculando o fatorial de {n}")
+    if n == 1 or n == 0:
+        print(f" fatorial de {n} = 1")
+        return 1
+    else:
+        fat = n * fatorial(n - 1)
+        print(f" fatorial de {n} = {fat}")
+    return fat
+
+print(fatorial(3))
+## Calculando o fatorial de 3
+## Calculando o fatorial de 2
+## Calculando o fatorial de 1
+##  fatorial de 1 = 1
+##  fatorial de 2 = 2
+##  fatorial de 3 = 6
+## 6
+```
+]
+]
+]
+---
+### Pilha de Recursão
+
+
+---
+### Pilha de Recursão
+
+
+---
+### Pilha de Recursão
+
+
+---
 ### As "3 leis da recursão"
 A partir dos exemplos ilustrativos anteriores, podemos então definir 3 regras básicas (ou características) para que uma função seja de fato recursiva:
 
@@ -220,477 +270,321 @@ A partir dos exemplos ilustrativos anteriores, podemos então definir 3 regras b
 
 3. deve **chamar a si mesmo**, recursivamente.
 
----
-## Typography
+&lt;!-- --- --&gt;
+&lt;!-- ## Typography --&gt;
 
-Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`.
+&lt;!-- Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`. --&gt;
 
-[Link to another slide](#colors).
+&lt;!-- [Link to another slide](#colors). --&gt;
 
-### Lorem Ipsum
+&lt;!-- ### Lorem Ipsum --&gt;
 
-Dolor imperdiet nostra sapien scelerisque praesent curae metus facilisis dignissim tortor. 
-Lacinia neque mollis nascetur neque urna velit bibendum. 
-Himenaeos suspendisse leo varius mus risus sagittis aliquet venenatis duis nec.
+&lt;!-- Dolor imperdiet nostra sapien scelerisque praesent curae metus facilisis dignissim tortor.  --&gt;
+&lt;!-- Lacinia neque mollis nascetur neque urna velit bibendum.  --&gt;
+&lt;!-- Himenaeos suspendisse leo varius mus risus sagittis aliquet venenatis duis nec. --&gt;
 
-- Dolor cubilia nostra nunc sodales
+&lt;!-- - Dolor cubilia nostra nunc sodales --&gt;
 
-- Consectetur aliquet mauris blandit
+&lt;!-- - Consectetur aliquet mauris blandit --&gt;
 
-- Ipsum dis nec porttitor urna sed
+&lt;!-- - Ipsum dis nec porttitor urna sed --&gt;
 
----
-name: colors
+&lt;!-- --- --&gt;
+&lt;!-- name: colors --&gt;
 
-## Colors
+&lt;!-- ## Colors --&gt;
 
-.left-column[
-Text color
+&lt;!-- .left-column[ --&gt;
+&lt;!-- Text color --&gt;
 
-[Link Color](#3)
+&lt;!-- [Link Color](#3) --&gt;
 
-**Bold Color**
+&lt;!-- **Bold Color** --&gt;
 
-_Italic Color_
+&lt;!-- _Italic Color_ --&gt;
 
-`Inline Code`
-]
+&lt;!-- `Inline Code` --&gt;
+&lt;!-- ] --&gt;
 
-.right-column[
-Lorem ipsum dolor sit amet, [consectetur adipiscing elit (link)](#3), 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Erat nam at lectus urna.
-Pellentesque elit ullamcorper **dignissim cras tincidunt (bold)** lobortis feugiat. 
-_Eros donec ac odio tempor_ orci dapibus ultrices. 
-Id porta nibh venenatis cras sed felis eget velit aliquet.
-Aliquam id diam maecenas ultricies mi.
-Enim sit amet 
-`code_color("inline")`
-venenatis urna cursus eget nunc scelerisque viverra.
-]
+&lt;!-- .right-column[ --&gt;
+&lt;!-- Lorem ipsum dolor sit amet, [consectetur adipiscing elit (link)](#3),  --&gt;
+&lt;!-- sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  --&gt;
+&lt;!-- Erat nam at lectus urna. --&gt;
+&lt;!-- Pellentesque elit ullamcorper **dignissim cras tincidunt (bold)** lobortis feugiat.  --&gt;
+&lt;!-- _Eros donec ac odio tempor_ orci dapibus ultrices.  --&gt;
+&lt;!-- Id porta nibh venenatis cras sed felis eget velit aliquet. --&gt;
+&lt;!-- Aliquam id diam maecenas ultricies mi. --&gt;
+&lt;!-- Enim sit amet  --&gt;
+&lt;!-- `code_color("inline")` --&gt;
+&lt;!-- venenatis urna cursus eget nunc scelerisque viverra. --&gt;
+&lt;!-- ] --&gt;
 
----
+&lt;!-- --- --&gt;
 
-# Big Topic or Inverse Slides `#`
+&lt;!-- # Big Topic or Inverse Slides `#` --&gt;
 
-## Slide Headings `##`
+&lt;!-- ## Slide Headings `##` --&gt;
 
-### Sub-slide Headings `###`
+&lt;!-- ### Sub-slide Headings `###` --&gt;
 
-#### Bold Call-Out `####`
+&lt;!-- #### Bold Call-Out `####` --&gt;
 
-This is a normal paragraph text. Only use header levels 1-4.
+&lt;!-- This is a normal paragraph text. Only use header levels 1-4. --&gt;
 
-##### Possible, but not recommended `#####`
+&lt;!-- ##### Possible, but not recommended `#####` --&gt;
 
-###### Definitely don't use h6 `######`
+&lt;!-- ###### Definitely don't use h6 `######` --&gt;
 
----
+&lt;!-- --- --&gt;
 
-# Left-Column Headings
+&lt;!-- # Left-Column Headings --&gt;
 
-.left-column[
-## First
+&lt;!-- .left-column[ --&gt;
+&lt;!-- ## First --&gt;
 
-## Second
+&lt;!-- ## Second --&gt;
 
-## Third
-]
+&lt;!-- ## Third --&gt;
+&lt;!-- ] --&gt;
 
-.right-column[
-Dolor quis aptent mus a dictum ultricies egestas.
+&lt;!-- .right-column[ --&gt;
+&lt;!-- Dolor quis aptent mus a dictum ultricies egestas. --&gt;
 
-Amet egestas neque tempor fermentum proin massa!
+&lt;!-- Amet egestas neque tempor fermentum proin massa! --&gt;
 
-Dolor elementum fermentum pharetra lectus arcu pulvinar.
-]
+&lt;!-- Dolor elementum fermentum pharetra lectus arcu pulvinar. --&gt;
+&lt;!-- ] --&gt;
 
----
-class: inverse center middle
+&lt;!-- --- --&gt;
+&lt;!-- class: inverse center middle --&gt;
 
-# Topic Changing Interstitial
+&lt;!-- # Topic Changing Interstitial --&gt;
 
---
+&lt;!-- -- --&gt;
 
-```
-class: inverse center middle
-```
+&lt;!-- ``` --&gt;
+&lt;!-- class: inverse center middle --&gt;
+&lt;!-- ``` --&gt;
 
----
-layout: true
+&lt;!-- --- --&gt;
+&lt;!-- layout: true --&gt;
 
-## Blocks
+&lt;!-- ## Blocks --&gt;
 
----
+&lt;!-- --- --&gt;
 
-### Blockquote
+&lt;!-- ### Blockquote --&gt;
 
-&gt; This is a blockquote following a header.
-&gt;
-&gt; When something is important enough, you do it even if the odds are not in your favor.
+&lt;!-- &gt; This is a blockquote following a header. --&gt;
+&lt;!-- &gt; --&gt;
+&lt;!-- &gt; When something is important enough, you do it even if the odds are not in your favor. --&gt;
 
----
+&lt;!-- --- --&gt;
 
-### Code Blocks
+&lt;!-- ### Code Blocks --&gt;
 
-#### R Code
+&lt;!-- #### R Code --&gt;
 
+&lt;!-- ```{r eval=FALSE} --&gt;
+&lt;!-- ggplot(gapminder) + --&gt;
+&lt;!--   aes(x = gdpPercap, y = lifeExp, size = pop, color = country) + --&gt;
+&lt;!--   geom_point() + --&gt;
+&lt;!--   facet_wrap(~year) --&gt;
+&lt;!-- ``` --&gt;
 
-```r
-ggplot(gapminder) +
-  aes(x = gdpPercap, y = lifeExp, size = pop, color = country) +
-  geom_point() +
-  facet_wrap(~year)
-```
+&lt;!-- #### JavaScript --&gt;
 
-#### JavaScript
+&lt;!-- ```js --&gt;
+&lt;!-- var fun = function lang(l) { --&gt;
+&lt;!--   dateformat.i18n = require('./lang/' + l) --&gt;
+&lt;!--   return true; --&gt;
+&lt;!-- } --&gt;
+&lt;!-- ``` --&gt;
 
-```js
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+&lt;!-- --- --&gt;
 
----
+&lt;!-- ### More R Code --&gt;
 
-### More R Code
+&lt;!-- ```{r eval=FALSE} --&gt;
+&lt;!-- dplyr::starwars %&gt;% dplyr::slice_sample(n = 4) --&gt;
+&lt;!-- ``` --&gt;
 
+&lt;!-- --- --&gt;
 
-```r
-dplyr::starwars %&gt;% dplyr::slice_sample(n = 4)
-```
+&lt;!-- ```{r message=TRUE, eval=requireNamespace("cli", quietly = TRUE)} --&gt;
+&lt;!-- cli::cli_alert_success("It worked!") --&gt;
+&lt;!-- ``` --&gt;
 
----
+&lt;!-- -- --&gt;
 
+&lt;!-- ```{r message=TRUE} --&gt;
+&lt;!-- message("Just a friendly message") --&gt;
+&lt;!-- ``` --&gt;
 
-```r
-cli::cli_alert_success("It worked!")
-```
+&lt;!-- -- --&gt;
 
-```
-## v It worked!
-```
+&lt;!-- ```{r warning=TRUE} --&gt;
+&lt;!-- warning("This could be bad...") --&gt;
+&lt;!-- ``` --&gt;
 
---
+&lt;!-- -- --&gt;
 
+&lt;!-- ```{r error=TRUE} --&gt;
+&lt;!-- stop("I hope you're sitting down for this") --&gt;
+&lt;!-- ``` --&gt;
 
-```r
-message("Just a friendly message")
-```
 
-```
-## Just a friendly message
-```
+&lt;!-- --- --&gt;
+&lt;!-- layout: true --&gt;
 
---
+&lt;!-- ## Tables --&gt;
 
-
-```r
-warning("This could be bad...")
-```
-
-```
-## Warning: This could be bad...
-```
-
---
-
-
-```r
-stop("I hope you're sitting down for this")
-```
-
-```
-## Error in eval(expr, envir, enclos): I hope you're sitting down for this
-```
-
-
----
-layout: true
-
-## Tables
-
----
-exclude: false
-
-
-```r
-tibble::as_tibble(mtcars)
-```
-
-```
-## # A tibble: 32 x 11
-##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
-##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
-##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
-##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
-##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
-##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
-##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
-##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
-##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
-## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-## # ... with 22 more rows
-```
-
----
-
-
-```r
-knitr::kable(head(mtcars), format = 'html')
-```
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mpg &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; cyl &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; disp &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; hp &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; drat &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; wt &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; qsec &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; vs &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; am &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; gear &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; carb &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Mazda RX4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 21.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.90 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.620 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.46 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Mazda RX4 Wag &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 21.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.90 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.875 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.02 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Datsun 710 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 22.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.85 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.320 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18.61 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Hornet 4 Drive &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 21.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 258 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.08 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.215 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 19.44 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Hornet Sportabout &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 360 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 175 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.15 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.440 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.02 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Valiant &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 225 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.76 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.460 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20.22 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
----
-exclude: false
-
-
-```r
-DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4))
-```
-
-<div id="htmlwidget-af7e3cfbe8d7ee49bb1e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-af7e3cfbe8d7ee49bb1e">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant"],[21,21,22.8,21.4,18.7,18.1],[6,6,4,6,8,6],[160,160,108,258,360,225],[110,110,93,110,175,105],[3.9,3.9,3.85,3.08,3.15,2.76],[2.62,2.875,2.32,3.215,3.44,3.46],[16.46,17.02,18.61,19.44,17.02,20.22],[0,0,1,1,0,1],[1,1,1,0,0,0],[4,4,4,3,3,3],[4,4,1,1,2,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n      <th>vs<\/th>\n      <th>am<\/th>\n      <th>gear<\/th>\n      <th>carb<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
-
----
-layout: true
-
-## Lists
-
----
-
-.pull-left[
-#### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-]
-
-.pull-right[
-
-#### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-]
-
----
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
----
-
-### Nesting an ol in ul in an ol
-
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-  1. level 2 item (ol)
-  1. level 2 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-  1. level 4 item (ol)
-  1. level 4 item (ol)
-    - level 3 item (ul)
-    - level 3 item (ul)
-- level 1 item (ul)
-
----
-layout: true
-
-## Plots
-
----
-
-
-```r
-library(ggplot2)
-(g &lt;- ggplot(mpg) + aes(hwy, cty, color = class) + geom_point())
-```
-
-&lt;img src="index_files/figure-html/plot-example-1.png" width="100%" /&gt;
-
----
-
-
-```r
-g + xaringanthemer::theme_xaringan(text_font_size = 16, title_font_size = 18) +
-  ggtitle("A Plot About Cars")
-```
-
-&lt;img src="index_files/figure-html/plot-example-themed-1.png" width="100%" /&gt;
-
----
-layout: false
-
-## Square image
-
-&lt;center&gt;&lt;img src="https://octodex.github.com/images/labtocat.png" height="400px" /&gt;&lt;/center&gt;
-
-.footnote[GitHub Octocat]
-
----
-
-### Wide image
-
-![](https://guides.github.com/activities/hello-world/branching.png)
-
-.footnote[Wide images scale to 100% slide width]
-
----
-
-## Two images
-
-.pull-left[
-![](https://octodex.github.com/images/motherhubbertocat.png)
-]
-
-.pull-right[
-![](https://octodex.github.com/images/dinotocat.png)
-]
-
----
-
-### Definition lists can be used with HTML syntax.
-
-&lt;dl&gt;
-&lt;dt&gt;Name&lt;/dt&gt;
-&lt;dd&gt;Godzilla&lt;/dd&gt;
-&lt;dt&gt;Born&lt;/dt&gt;
-&lt;dd&gt;1952&lt;/dd&gt;
-&lt;dt&gt;Birthplace&lt;/dt&gt;
-&lt;dd&gt;Japan&lt;/dd&gt;
-&lt;dt&gt;Color&lt;/dt&gt;
-&lt;dd&gt;Green&lt;/dd&gt;
-&lt;/dl&gt;
+&lt;!-- --- --&gt;
+&lt;!-- exclude: false --&gt;
+
+&lt;!-- ```{r eval=requireNamespace("tibble", quietly=TRUE)} --&gt;
+&lt;!-- tibble::as_tibble(mtcars) --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ```{r} --&gt;
+&lt;!-- knitr::kable(head(mtcars), format = 'html') --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- exclude: false --&gt;
+
+&lt;!-- ```{r eval=requireNamespace("DT", quietly=TRUE)} --&gt;
+&lt;!-- DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4)) --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- layout: true --&gt;
+
+&lt;!-- ## Lists --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- #### Here is an unordered list: --&gt;
+
+&lt;!-- *   Item foo --&gt;
+&lt;!-- *   Item bar --&gt;
+&lt;!-- *   Item baz --&gt;
+&lt;!-- *   Item zip --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+
+&lt;!-- #### And an ordered list: --&gt;
+
+&lt;!-- 1.  Item one --&gt;
+&lt;!-- 1.  Item two --&gt;
+&lt;!-- 1.  Item three --&gt;
+&lt;!-- 1.  Item four --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ### And a nested list: --&gt;
+
+&lt;!-- - level 1 item --&gt;
+&lt;!--   - level 2 item --&gt;
+&lt;!--   - level 2 item --&gt;
+&lt;!--     - level 3 item --&gt;
+&lt;!--     - level 3 item --&gt;
+&lt;!-- - level 1 item --&gt;
+&lt;!--   - level 2 item --&gt;
+&lt;!--   - level 2 item --&gt;
+&lt;!--   - level 2 item --&gt;
+&lt;!-- - level 1 item --&gt;
+&lt;!--   - level 2 item --&gt;
+&lt;!--   - level 2 item --&gt;
+&lt;!-- - level 1 item --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ### Nesting an ol in ul in an ol --&gt;
+
+&lt;!-- - level 1 item (ul) --&gt;
+&lt;!--   1. level 2 item (ol) --&gt;
+&lt;!--   1. level 2 item (ol) --&gt;
+&lt;!--     - level 3 item (ul) --&gt;
+&lt;!--     - level 3 item (ul) --&gt;
+&lt;!-- - level 1 item (ul) --&gt;
+&lt;!--   1. level 2 item (ol) --&gt;
+&lt;!--   1. level 2 item (ol) --&gt;
+&lt;!--     - level 3 item (ul) --&gt;
+&lt;!--     - level 3 item (ul) --&gt;
+&lt;!--   1. level 4 item (ol) --&gt;
+&lt;!--   1. level 4 item (ol) --&gt;
+&lt;!--     - level 3 item (ul) --&gt;
+&lt;!--     - level 3 item (ul) --&gt;
+&lt;!-- - level 1 item (ul) --&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- layout: true --&gt;
+
+&lt;!-- ## Plots --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ```{r plot-example, eval=requireNamespace("ggplot2", quietly=TRUE)} --&gt;
+&lt;!-- library(ggplot2) --&gt;
+&lt;!-- (g &lt;- ggplot(mpg) + aes(hwy, cty, color = class) + geom_point()) --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ```{r plot-example-themed, eval=requireNamespace("ggplot2", quietly=TRUE)} --&gt;
+&lt;!-- g + xaringanthemer::theme_xaringan(text_font_size = 16, title_font_size = 18) + --&gt;
+&lt;!--   ggtitle("A Plot About Cars") --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- layout: false --&gt;
+
+&lt;!-- ## Square image --&gt;
+
+&lt;!-- &lt;center&gt;&lt;img src="https://octodex.github.com/images/labtocat.png" height="400px" /&gt;&lt;/center&gt; --&gt;
+
+&lt;!-- .footnote[GitHub Octocat] --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ### Wide image --&gt;
+
+&lt;!-- ![](https://guides.github.com/activities/hello-world/branching.png) --&gt;
+
+&lt;!-- .footnote[Wide images scale to 100% slide width] --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ## Two images --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ![](https://octodex.github.com/images/motherhubbertocat.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+&lt;!-- ![](https://octodex.github.com/images/dinotocat.png) --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ### Definition lists can be used with HTML syntax. --&gt;
+
+&lt;!-- &lt;dl&gt; --&gt;
+&lt;!-- &lt;dt&gt;Name&lt;/dt&gt; --&gt;
+&lt;!-- &lt;dd&gt;Godzilla&lt;/dd&gt; --&gt;
+&lt;!-- &lt;dt&gt;Born&lt;/dt&gt; --&gt;
+&lt;!-- &lt;dd&gt;1952&lt;/dd&gt; --&gt;
+&lt;!-- &lt;dt&gt;Birthplace&lt;/dt&gt; --&gt;
+&lt;!-- &lt;dd&gt;Japan&lt;/dd&gt; --&gt;
+&lt;!-- &lt;dt&gt;Color&lt;/dt&gt; --&gt;
+&lt;!-- &lt;dd&gt;Green&lt;/dd&gt; --&gt;
+&lt;!-- &lt;/dl&gt; --&gt;
 
 ---
 class: center, middle
