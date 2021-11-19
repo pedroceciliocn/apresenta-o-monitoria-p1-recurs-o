@@ -94,6 +94,129 @@ background-size: cover
 
 &lt;/style&gt;
 
+# Recursão
+Uma **função** é **recursiva** quando pode chamar a si mesma. 
+--
+E qual o motivo pra fazer isso?
+--
+
+Quebrar problemas maiores em problemas menores, e cada vez menores, até que se chegue num problema _simples_ o suficiente pra ser resolvido de forma fácil.
+
+--
+#### Exemplo de um problema simples. A soma dos elementos de uma lista:
+.panelset[
+.panel[.panel-name[Sem recursão]
+
+```python
+def soma_lista(lista):
+    soma = 0
+    for i in lista:
+        soma = soma + i
+    return soma
+
+print(soma_lista([1,3,5,7,9]))
+## 25
+```
+]
+.panel[.panel-name[Com Recursão]
+
+```python
+def soma_lista(lista):
+    if len(lista) == 1: # caso base (o mais simples: uma lista de 1 elemento)
+        return lista[0]
+    else:
+        return lista[0] + soma_lista(lista[1:]) # chamada da própria função
+
+print(soma_lista([1,3,5,7,9]))
+## 25
+```
+]
+]
+
+---
+
+### Caso base e caso recursivo
+Por possuir essa característica de "chamar a si mesma", uma função recursiva escrita com descuido, pode acabar entrando num **loop infinito**. Isso é bem comum.
+--
+.pull-left[
+#### Exemplo ilustrativo
+Vamos para um exemplo simples, de uma função que conta de 10 até 1 (como se fosse uma brincadeira de "pique-esconde" ou "se esconda"). (Ignore o fato de que 10s são muito pouco pra se esconder adequadamente).
+O Cebolinha tem como referências o primeiro valor (o 10), que vai sendo decrementado, e o último (o 1, que antecede o famigerado "Lá vou eu!"). Sem essa referência (o caso base) ele contaria pra sempre, contando até passar do 1 (ou zero) e indefinitivamente até que a Mônica voltasse e arrebentasse com a cara do salafrário.
+]
+.pull-right[
+![](pics\esconde-esconde.jpg)
+]
+
+---
+### Caso base e caso recursivo
+.panelset[
+.panel[.panel-name[Contagem]
+
+```python
+def contagem(i):
+    print(f"{i:2}...")
+    if i &lt;= 1: # caso base
+        print("Lá vou eu!")
+    else: # caso recursivo, com o decremento nescessário
+        contagem(i-1)
+```
+]
+.panel[.panel-name[Resultado]
+
+```python
+contagem(10)
+## 10...
+##  9...
+##  8...
+##  7...
+##  6...
+##  5...
+##  4...
+##  3...
+##  2...
+##  1...
+## Lá vou eu!
+```
+]
+.panel[.panel-name[Sem caso base]
+
+```python
+def contagem_2(i):
+    print(i)
+    contagem_2(i-1)
+```
+]
+.panel[.panel-name[Resultado 2]
+
+```python
+print(contagem_2(10))
+## Error in py_call_impl(callable, dots$args, dots$keywords): RecursionError: maximum recursion depth exceeded while getting the str of an object
+## 
+## Detailed traceback:
+##   File "&lt;string&gt;", line 1, in &lt;module&gt;
+##   File "&lt;string&gt;", line 3, in contagem_2
+##   File "&lt;string&gt;", line 3, in contagem_2
+##   File "&lt;string&gt;", line 3, in contagem_2
+##   [Previous line repeated 993 more times]
+##   File "&lt;string&gt;", line 2, in contagem_2
+```
+]
+]
+---
+### Pilha de Recursão
+
+---
+
+### As "3 leis da recursão"
+A partir dos exemplos ilustrativos anteriores, podemos então definir 3 regras básicas (ou características) para que uma função seja de fato recursiva:
+
+1. deve ter um **caso básico**
+
+2. deve **mudar o seu estado** e se **aproximar do caso básico**.
+
+3. deve **chamar a si mesmo**, recursivamente.
+
+---
 ## Typography
 
 Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`.
@@ -429,8 +552,8 @@ exclude: false
 DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4))
 ```
 
-<div id="htmlwidget-ca31fd88ad88d1b8ade2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ca31fd88ad88d1b8ade2">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant"],[21,21,22.8,21.4,18.7,18.1],[6,6,4,6,8,6],[160,160,108,258,360,225],[110,110,93,110,175,105],[3.9,3.9,3.85,3.08,3.15,2.76],[2.62,2.875,2.32,3.215,3.44,3.46],[16.46,17.02,18.61,19.44,17.02,20.22],[0,0,1,1,0,1],[1,1,1,0,0,0],[4,4,4,3,3,3],[4,4,1,1,2,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n      <th>vs<\/th>\n      <th>am<\/th>\n      <th>gear<\/th>\n      <th>carb<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4a62ae5b3a7530dcf2f4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4a62ae5b3a7530dcf2f4">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant"],[21,21,22.8,21.4,18.7,18.1],[6,6,4,6,8,6],[160,160,108,258,360,225],[110,110,93,110,175,105],[3.9,3.9,3.85,3.08,3.15,2.76],[2.62,2.875,2.32,3.215,3.44,3.46],[16.46,17.02,18.61,19.44,17.02,20.22],[0,0,1,1,0,1],[1,1,1,0,0,0],[4,4,4,3,3,3],[4,4,1,1,2,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n      <th>vs<\/th>\n      <th>am<\/th>\n      <th>gear<\/th>\n      <th>carb<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 layout: true
