@@ -229,60 +229,65 @@ print(fatorial(3))
 ]
 ---
 ### Pilha de Recursão desenho
-
-
----
-### Pilha de Recursão desenho
-
+![FONTE: Grokking](pics\046fig01_alt-2.jpg)
 
 ---
 ### Pilha de Recursão desenho
+![](pics\046fig01_alt-3.jpg)
 
+---
+### Pilha de Recursão desenho
+![](pics\046fig01_alt-4.jpg)
+---
 
+---
+```{r echo=FALSE, fig.align = 'left', out.width = "50%", fig.cap = "Figure caption", fig.subcap="Grokking"}
+knitr::include_graphics("046fig01_alt-2.jpg")
+```
 ---
 ### Exemplos
 .panelset[
 .panel[.panel-name[Fibonacci]
 ```{python, collapse = TRUE}
-def fibonacci(n):
+def fibonacci_r(n):
     if n <= 1:
         return n
     else:
-        return fibonacci(n - 1) + fibonacci(n - 2)
+        return fibonacci_r(n - 1) + fibonacci_r(n - 2)
 
-print(fibonacci(5))
+print(fibonacci_r(10))
 ```
 ]
 .panel[.panel-name[Fibo com contador]
 ```{python, collapse = TRUE}
 count = 0
-def fibonacci(n):
+def fibonacci_r1(n):
     global count
     count +=1
     if n <= 1:
         return n
     else:
-        return fibonacci(n - 1) + fibonacci(n - 2)
+        return fibonacci_r1(n - 1) + fibonacci_r1(n - 2)
         
-print(fibonacci(5), count)
+print(fibonacci_r1(10), count)
 ```
 ]
 .panel[.panel-name[Fibo mais robusto]
 ```{python, collapse = TRUE}
 count = 0
-def fibonacci(n, t1 = 1, res = 0):
+def fibonacci_r2(n, t1 = 1, res = 0):
     global count    
     if n > 1:
         count +=1
-        res = fibonacci(n - 1, res, t1 + res)
-    return n
+        res = fibonacci_r2(n - 1, res, t1 + res)
+    return res
 
-print(fibonacci(5), count)
+print(fibonacci_r2(11), count)
 ```
 ]
 .panel[.panel-name[Pilha estourando]
 ```{python, collapse = TRUE, error = TRUE}
-print(fibonacci(1000), count)
+print(fibonacci_r2(1000), count)
 ```
 ]
 .panel[.panel-name[Fibo sem recursão]
@@ -295,7 +300,7 @@ def fibonacci_s(n):
         n -= 1
     return t1
 
-print(fibonacci_s(5))
+print(fibonacci_s(10))
 print(fibonacci_s(1000))
 ```
 ]

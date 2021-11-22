@@ -250,76 +250,82 @@ print(fatorial(3))
 ]
 ---
 ### Pilha de Recursão desenho
-
-
----
-### Pilha de Recursão desenho
-
+![FONTE: Grokking](pics\046fig01_alt-2.jpg)
 
 ---
 ### Pilha de Recursão desenho
+![](pics\046fig01_alt-3.jpg)
 
+---
+### Pilha de Recursão desenho
+![](pics\046fig01_alt-4.jpg)
+---
 
+---
+&lt;div class="figure" style="text-align: left"&gt;
+&lt;img src="046fig01_alt-2.jpg" alt="Figure caption" width="50%" /&gt;
+&lt;p class="caption"&gt;Figure caption&lt;/p&gt;
+&lt;/div&gt;
 ---
 ### Exemplos
 .panelset[
 .panel[.panel-name[Fibonacci]
 
 ```python
-def fibonacci(n):
+def fibonacci_r(n):
     if n &lt;= 1:
         return n
     else:
-        return fibonacci(n - 1) + fibonacci(n - 2)
+        return fibonacci_r(n - 1) + fibonacci_r(n - 2)
 
-print(fibonacci(5))
-## 5
+print(fibonacci_r(10))
+## 55
 ```
 ]
 .panel[.panel-name[Fibo com contador]
 
 ```python
 count = 0
-def fibonacci(n):
+def fibonacci_r1(n):
     global count
     count +=1
     if n &lt;= 1:
         return n
     else:
-        return fibonacci(n - 1) + fibonacci(n - 2)
+        return fibonacci_r1(n - 1) + fibonacci_r1(n - 2)
         
-print(fibonacci(5), count)
-## 5 15
+print(fibonacci_r1(10), count)
+## 55 177
 ```
 ]
 .panel[.panel-name[Fibo mais robusto]
 
 ```python
 count = 0
-def fibonacci(n, t1 = 1, res = 0):
+def fibonacci_r2(n, t1 = 1, res = 0):
     global count    
     if n &gt; 1:
         count +=1
-        res = fibonacci(n - 1, res, t1 + res)
-    return n
+        res = fibonacci_r2(n - 1, res, t1 + res)
+    return res
 
-print(fibonacci(5), count)
-## 5 4
+print(fibonacci_r2(11), count)
+## 55 10
 ```
 ]
 .panel[.panel-name[Pilha estourando]
 
 ```python
-print(fibonacci(1000), count)
+print(fibonacci_r2(1000), count)
 ## Error in py_call_impl(callable, dots$args, dots$keywords): RecursionError: maximum recursion depth exceeded in comparison
 ## 
 ## Detailed traceback:
 ##   File "&lt;string&gt;", line 1, in &lt;module&gt;
-##   File "&lt;string&gt;", line 5, in fibonacci
-##   File "&lt;string&gt;", line 5, in fibonacci
-##   File "&lt;string&gt;", line 5, in fibonacci
+##   File "&lt;string&gt;", line 5, in fibonacci_r2
+##   File "&lt;string&gt;", line 5, in fibonacci_r2
+##   File "&lt;string&gt;", line 5, in fibonacci_r2
 ##   [Previous line repeated 994 more times]
-##   File "&lt;string&gt;", line 3, in fibonacci
+##   File "&lt;string&gt;", line 3, in fibonacci_r2
 ```
 ]
 .panel[.panel-name[Fibo sem recursão]
@@ -333,8 +339,8 @@ def fibonacci_s(n):
         n -= 1
     return t1
 
-print(fibonacci_s(5))
-## 5
+print(fibonacci_s(10))
+## 55
 print(fibonacci_s(1000))
 ## 43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875
 ```
