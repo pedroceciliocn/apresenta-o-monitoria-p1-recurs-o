@@ -135,7 +135,8 @@ Vamos para um exemplo simples, de uma função que conta de 10 até 1 (como se f
 O Cebolinha tem como referências o primeiro valor (o 10), que vai sendo decrementado, e o último (o 1, que antecede o famigerado "Lá vou eu!"). Sem essa referência (o caso base) ele contaria pra sempre, contando até passar do 1 (ou zero) e indefinitivamente até que a Mônica voltasse e arrebentasse com a cara do salafrário.
 ]
 .pull-right[
-![](pics\esconde-esconde.jpg)
+**Figura 1**
+![Figura 1](pics\esconde-esconde.jpg)
 ]
 
 ---
@@ -213,13 +214,15 @@ No primeiro código temos uma possibilidade de função recursiva para cálculo 
 
 ```python
 def fatorial(n):
-    if n == 1:
+    if n == 1 or n == 0:
         return 1
     else:
         return n * fatorial(n - 1)
 
 print(fatorial(3))
 ## 6
+print(fatorial(0))
+## 1
 ```
 ]
 .panel[.panel-name[Fatorial modificado]
@@ -236,35 +239,40 @@ def fatorial(n):
         print(f" fatorial de {n} = {fat}")
     return fat
 
-print(fatorial(3))
+print(fatorial(3), fatorial(0))
 ## Calculando o fatorial de 3
 ## Calculando o fatorial de 2
 ## Calculando o fatorial de 1
 ##  fatorial de 1 = 1
 ##  fatorial de 2 = 2
 ##  fatorial de 3 = 6
-## 6
+## Calculando o fatorial de 0
+##  fatorial de 0 = 1
+## 6 1
 ```
 ]
 ]
 ]
 ---
 ### Pilha de Recursão desenho
-![FONTE: Grokking](pics\046fig01_alt-2.jpg)
-
----
-### Pilha de Recursão desenho
-![](pics\046fig01_alt-3.jpg)
-
----
-### Pilha de Recursão desenho
-![](pics\046fig01_alt-4.jpg)
----
-
----
+#### Figura 2
 &lt;div class="figure" style="text-align: left"&gt;
-&lt;img src="046fig01_alt-2.jpg" alt="Figure caption" width="50%" /&gt;
-&lt;p class="caption"&gt;Figure caption&lt;/p&gt;
+&lt;img src="pics/046fig01_alt-2.jpg" alt="FIGURA 1" width="60%" /&gt;
+&lt;p class="caption"&gt;(BHARGAVA, 2016)&lt;/p&gt;
+&lt;/div&gt;
+---
+### Pilha de Recursão desenho
+#### Figura 3
+&lt;div class="figure" style="text-align: left"&gt;
+&lt;img src="pics/046fig01_alt-3.jpg" alt="FIGURA 1" width="60%" /&gt;
+&lt;p class="caption"&gt;(BHARGAVA, 2016)&lt;/p&gt;
+&lt;/div&gt;
+---
+### Pilha de Recursão desenho
+#### Figura 4
+&lt;div class="figure" style="text-align: left"&gt;
+&lt;img src="pics/046fig01_alt-4.jpg" alt="FIGURA 1" width="60%" /&gt;
+&lt;p class="caption"&gt;(BHARGAVA, 2016)&lt;/p&gt;
 &lt;/div&gt;
 ---
 ### Exemplos
@@ -309,7 +317,7 @@ def fibonacci_r2(n, t1 = 1, res = 0):
         res = fibonacci_r2(n - 1, res, t1 + res)
     return res
 
-print(fibonacci_r2(11), count)
+print(fibonacci_r2(11), count) # 11º termo da sequência de Fibonacci
 ## 55 10
 ```
 ]
@@ -357,6 +365,10 @@ A partir dos exemplos ilustrativos anteriores, podemos então definir 3 regras b
 2. deve **mudar o seu estado** e se **aproximar do caso básico**.
 
 3. deve **chamar a si mesmo**, recursivamente.
+
+---
+### Vídeo - What on Earth is Recursion? - Computerphile
+&lt;iframe width="1100" height="540" src="https://www.youtube.com/embed/Mv9NEXX1VHc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 
 ---
 # Referências
