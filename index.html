@@ -287,9 +287,57 @@ def fibonacci(n):
         return n
     else:
         return fibonacci(n - 1) + fibonacci(n - 2)
-
+        
 print(fibonacci(5), count)
 ## 5 15
+```
+]
+.panel[.panel-name[Fibo cont alt]
+
+```python
+count = 0
+def fibonacci(n):
+    global count
+    count +=1
+    if n &lt;= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+        
+print(fibonacci(5), count)
+## 5 15
+```
+]
+.panel[.panel-name[Fibo mais robusto]
+
+```python
+count = 0
+def fibonacci(n, t1 = 1, res = 0):
+    global count    
+    if n &gt; 1:
+        count +=1
+        res = fibonacci(n - 1, res, t1 + res)
+    return n
+
+print(fibonacci(5), count)
+## 5 4
+```
+]
+.panel[.panel-name[Fibo alt]
+
+```python
+count = 0
+def fibonacci(n, t1 = 1, res = 0):
+    global count    
+    if n &lt;= 1:
+      return res
+    else:
+        count +=1
+        res = fibonacci(n - 1, res, t1 + res)
+    return n
+
+print(fibonacci(5), count)
+## 5 4
 ```
 ]
 .panel[.panel-name[Pilha estourando]
@@ -304,45 +352,25 @@ print(fibonacci(1000), count)
 ##   File "&lt;string&gt;", line 7, in fibonacci
 ##   File "&lt;string&gt;", line 7, in fibonacci
 ##   [Previous line repeated 994 more times]
-##   File "&lt;string&gt;", line 4, in fibonacci
-```
-]
-.panel[.panel-name[Fibo mais robusto, com contador]
-
-```python
-count = 0
-def fibonacci(n, t1 = 1, res = 0):
-    global count    
-    if n &gt; 1:
-        count +=1
-        res = fibonacci(n - 1, res, t1 + res)
-    return res
-
-print(fibonacci(6), count)
-## 5 5
-```
-]
-.panel[.panel-name[Nova tentativa]
-
-```python
-print(fibonacci(2000), count)
-## Error in py_call_impl(callable, dots$args, dots$keywords): RecursionError: maximum recursion depth exceeded in comparison
-## 
-## Detailed traceback:
-##   File "&lt;string&gt;", line 1, in &lt;module&gt;
-##   File "&lt;string&gt;", line 5, in fibonacci
-##   File "&lt;string&gt;", line 5, in fibonacci
-##   File "&lt;string&gt;", line 5, in fibonacci
-##   [Previous line repeated 994 more times]
 ##   File "&lt;string&gt;", line 3, in fibonacci
 ```
 ]
+.panel[.panel-name[Fibo sem recursão]
+
+```python
+def fibonacci(n):
+    primeiro = 0
+    segundo = 1
+    while n &gt; 0:
+        primeiro, segundo = segundo, segundo + primeiro
+        n -= 1
+    return primeiro
+
+print(fibonacci(1000))
+## 43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875
+```
 ]
-
-
-
-
-
+]
 
 
 ---
@@ -670,18 +698,35 @@ A partir dos exemplos ilustrativos anteriores, podemos então definir 3 regras b
 &lt;!-- &lt;dt&gt;Color&lt;/dt&gt; --&gt;
 &lt;!-- &lt;dd&gt;Green&lt;/dd&gt; --&gt;
 &lt;!-- &lt;/dl&gt; --&gt;
+---
+# Referências
+
+4.2. O que é recursão? — Resolução de Problemas Usando Python. Disponível em: &lt;https://panda.ime.usp.br/panda/static/pythonds_pt/04-Recursao/01-introducao.html&gt;. Acesso em: 19 nov. 2021.
+
+4.4. As Três Leis da Recursão — Resolução de Problemas Usando Python. Disponível em: &lt;https://panda.ime.usp.br/panda/static/pythonds_pt/04-Recursao/03-tresLeis.html&gt;. Acesso em: 19 nov. 2021.
+
+4.6. Blocos de Pilha: Implementando Recursão — Resolução de Problemas Usando Python. Disponível em: &lt;https://panda.ime.usp.br/panda/static/pythonds_pt/04-Recursao/05-pilhas.html&gt;. Acesso em: 19 nov. 2021.
+
+**Chapter 3. Recursion · Grokking Algorithms: An illustrated guide for programmers and other curious people**. Disponível em: &lt;https://livebook.manning.com/book/grokking-algorithms/chapter-3/&gt;. Acesso em: 19 nov. 2021. 
+
+COMPUTERPHILE. **What on Earth is Recursion? - Computerphile**, 2014. Disponível em: &lt;https://www.youtube.com/watch?v=Mv9NEXX1VHc&gt;. Acesso em: 19 nov. 2021
+
+[DOWNEY, A. B. **Pense em Python: Pense Como um Cientista da Computação.** Novatec Editora, 2016.](https://penseallen.github.io/PensePython2e/) 
+
+[MENEZES, N. N. C. **Introdução à Programação com Python: Algoritmos e Lógica de Programação Para Iniciantes.** 3a edição ed. Novatec Editora, 2019.](https://python.nilo.pro.br/)
+
 
 ---
 class: center, middle
 
-# Thanks!
+# Obrigado!
 
-Slides created via the R packages:
+Slides criados usando os seguintes pacotes do R:
 
 [**xaringan**](https://github.com/yihui/xaringan)&lt;br&gt;
 [gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
 
-The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+[remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), e [R Markdown](https://rmarkdown.rstudio.com).
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
