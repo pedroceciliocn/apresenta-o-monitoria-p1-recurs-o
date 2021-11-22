@@ -292,22 +292,6 @@ print(fibonacci(5), count)
 ## 5 15
 ```
 ]
-.panel[.panel-name[Fibo cont alt]
-
-```python
-count = 0
-def fibonacci(n):
-    global count
-    count +=1
-    if n &lt;= 1:
-        return n
-    else:
-        return fibonacci(n - 1) + fibonacci(n - 2)
-        
-print(fibonacci(5), count)
-## 5 15
-```
-]
 .panel[.panel-name[Fibo mais robusto]
 
 ```python
@@ -315,23 +299,6 @@ count = 0
 def fibonacci(n, t1 = 1, res = 0):
     global count    
     if n &gt; 1:
-        count +=1
-        res = fibonacci(n - 1, res, t1 + res)
-    return n
-
-print(fibonacci(5), count)
-## 5 4
-```
-]
-.panel[.panel-name[Fibo alt]
-
-```python
-count = 0
-def fibonacci(n, t1 = 1, res = 0):
-    global count    
-    if n &lt;= 1:
-      return res
-    else:
         count +=1
         res = fibonacci(n - 1, res, t1 + res)
     return n
@@ -348,9 +315,9 @@ print(fibonacci(1000), count)
 ## 
 ## Detailed traceback:
 ##   File "&lt;string&gt;", line 1, in &lt;module&gt;
-##   File "&lt;string&gt;", line 7, in fibonacci
-##   File "&lt;string&gt;", line 7, in fibonacci
-##   File "&lt;string&gt;", line 7, in fibonacci
+##   File "&lt;string&gt;", line 5, in fibonacci
+##   File "&lt;string&gt;", line 5, in fibonacci
+##   File "&lt;string&gt;", line 5, in fibonacci
 ##   [Previous line repeated 994 more times]
 ##   File "&lt;string&gt;", line 3, in fibonacci
 ```
@@ -358,15 +325,17 @@ print(fibonacci(1000), count)
 .panel[.panel-name[Fibo sem recursão]
 
 ```python
-def fibonacci(n):
-    primeiro = 0
-    segundo = 1
+def fibonacci_s(n):
+    t1 = 0
+    t2 = 1
     while n &gt; 0:
-        primeiro, segundo = segundo, segundo + primeiro
+        t1, t2 = t2, t2 + t1
         n -= 1
-    return primeiro
+    return t1
 
-print(fibonacci(1000))
+print(fibonacci_s(5))
+## 5
+print(fibonacci_s(1000))
 ## 43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875
 ```
 ]
@@ -383,321 +352,6 @@ A partir dos exemplos ilustrativos anteriores, podemos então definir 3 regras b
 
 3. deve **chamar a si mesmo**, recursivamente.
 
-&lt;!-- --- --&gt;
-&lt;!-- ## Typography --&gt;
-
-&lt;!-- Text can be **bold**, _italic_, ~~strikethrough~~, or `inline code`. --&gt;
-
-&lt;!-- [Link to another slide](#colors). --&gt;
-
-&lt;!-- ### Lorem Ipsum --&gt;
-
-&lt;!-- Dolor imperdiet nostra sapien scelerisque praesent curae metus facilisis dignissim tortor.  --&gt;
-&lt;!-- Lacinia neque mollis nascetur neque urna velit bibendum.  --&gt;
-&lt;!-- Himenaeos suspendisse leo varius mus risus sagittis aliquet venenatis duis nec. --&gt;
-
-&lt;!-- - Dolor cubilia nostra nunc sodales --&gt;
-
-&lt;!-- - Consectetur aliquet mauris blandit --&gt;
-
-&lt;!-- - Ipsum dis nec porttitor urna sed --&gt;
-
-&lt;!-- --- --&gt;
-&lt;!-- name: colors --&gt;
-
-&lt;!-- ## Colors --&gt;
-
-&lt;!-- .left-column[ --&gt;
-&lt;!-- Text color --&gt;
-
-&lt;!-- [Link Color](#3) --&gt;
-
-&lt;!-- **Bold Color** --&gt;
-
-&lt;!-- _Italic Color_ --&gt;
-
-&lt;!-- `Inline Code` --&gt;
-&lt;!-- ] --&gt;
-
-&lt;!-- .right-column[ --&gt;
-&lt;!-- Lorem ipsum dolor sit amet, [consectetur adipiscing elit (link)](#3),  --&gt;
-&lt;!-- sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  --&gt;
-&lt;!-- Erat nam at lectus urna. --&gt;
-&lt;!-- Pellentesque elit ullamcorper **dignissim cras tincidunt (bold)** lobortis feugiat.  --&gt;
-&lt;!-- _Eros donec ac odio tempor_ orci dapibus ultrices.  --&gt;
-&lt;!-- Id porta nibh venenatis cras sed felis eget velit aliquet. --&gt;
-&lt;!-- Aliquam id diam maecenas ultricies mi. --&gt;
-&lt;!-- Enim sit amet  --&gt;
-&lt;!-- `code_color("inline")` --&gt;
-&lt;!-- venenatis urna cursus eget nunc scelerisque viverra. --&gt;
-&lt;!-- ] --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- # Big Topic or Inverse Slides `#` --&gt;
-
-&lt;!-- ## Slide Headings `##` --&gt;
-
-&lt;!-- ### Sub-slide Headings `###` --&gt;
-
-&lt;!-- #### Bold Call-Out `####` --&gt;
-
-&lt;!-- This is a normal paragraph text. Only use header levels 1-4. --&gt;
-
-&lt;!-- ##### Possible, but not recommended `#####` --&gt;
-
-&lt;!-- ###### Definitely don't use h6 `######` --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- # Left-Column Headings --&gt;
-
-&lt;!-- .left-column[ --&gt;
-&lt;!-- ## First --&gt;
-
-&lt;!-- ## Second --&gt;
-
-&lt;!-- ## Third --&gt;
-&lt;!-- ] --&gt;
-
-&lt;!-- .right-column[ --&gt;
-&lt;!-- Dolor quis aptent mus a dictum ultricies egestas. --&gt;
-
-&lt;!-- Amet egestas neque tempor fermentum proin massa! --&gt;
-
-&lt;!-- Dolor elementum fermentum pharetra lectus arcu pulvinar. --&gt;
-&lt;!-- ] --&gt;
-
-&lt;!-- --- --&gt;
-&lt;!-- class: inverse center middle --&gt;
-
-&lt;!-- # Topic Changing Interstitial --&gt;
-
-&lt;!-- -- --&gt;
-
-&lt;!-- ``` --&gt;
-&lt;!-- class: inverse center middle --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- --- --&gt;
-&lt;!-- layout: true --&gt;
-
-&lt;!-- ## Blocks --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ### Blockquote --&gt;
-
-&lt;!-- &gt; This is a blockquote following a header. --&gt;
-&lt;!-- &gt; --&gt;
-&lt;!-- &gt; When something is important enough, you do it even if the odds are not in your favor. --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ### Code Blocks --&gt;
-
-&lt;!-- #### R Code --&gt;
-
-&lt;!-- ```{r eval=FALSE} --&gt;
-&lt;!-- ggplot(gapminder) + --&gt;
-&lt;!--   aes(x = gdpPercap, y = lifeExp, size = pop, color = country) + --&gt;
-&lt;!--   geom_point() + --&gt;
-&lt;!--   facet_wrap(~year) --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- #### JavaScript --&gt;
-
-&lt;!-- ```js --&gt;
-&lt;!-- var fun = function lang(l) { --&gt;
-&lt;!--   dateformat.i18n = require('./lang/' + l) --&gt;
-&lt;!--   return true; --&gt;
-&lt;!-- } --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ### More R Code --&gt;
-
-&lt;!-- ```{r eval=FALSE} --&gt;
-&lt;!-- dplyr::starwars %&gt;% dplyr::slice_sample(n = 4) --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ```{r message=TRUE, eval=requireNamespace("cli", quietly = TRUE)} --&gt;
-&lt;!-- cli::cli_alert_success("It worked!") --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- -- --&gt;
-
-&lt;!-- ```{r message=TRUE} --&gt;
-&lt;!-- message("Just a friendly message") --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- -- --&gt;
-
-&lt;!-- ```{r warning=TRUE} --&gt;
-&lt;!-- warning("This could be bad...") --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- -- --&gt;
-
-&lt;!-- ```{r error=TRUE} --&gt;
-&lt;!-- stop("I hope you're sitting down for this") --&gt;
-&lt;!-- ``` --&gt;
-
-
-&lt;!-- --- --&gt;
-&lt;!-- layout: true --&gt;
-
-&lt;!-- ## Tables --&gt;
-
-&lt;!-- --- --&gt;
-&lt;!-- exclude: false --&gt;
-
-&lt;!-- ```{r eval=requireNamespace("tibble", quietly=TRUE)} --&gt;
-&lt;!-- tibble::as_tibble(mtcars) --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ```{r} --&gt;
-&lt;!-- knitr::kable(head(mtcars), format = 'html') --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- --- --&gt;
-&lt;!-- exclude: false --&gt;
-
-&lt;!-- ```{r eval=requireNamespace("DT", quietly=TRUE)} --&gt;
-&lt;!-- DT::datatable(head(mtcars), fillContainer = FALSE, options = list(pageLength = 4)) --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- --- --&gt;
-&lt;!-- layout: true --&gt;
-
-&lt;!-- ## Lists --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- .pull-left[ --&gt;
-&lt;!-- #### Here is an unordered list: --&gt;
-
-&lt;!-- *   Item foo --&gt;
-&lt;!-- *   Item bar --&gt;
-&lt;!-- *   Item baz --&gt;
-&lt;!-- *   Item zip --&gt;
-&lt;!-- ] --&gt;
-
-&lt;!-- .pull-right[ --&gt;
-
-&lt;!-- #### And an ordered list: --&gt;
-
-&lt;!-- 1.  Item one --&gt;
-&lt;!-- 1.  Item two --&gt;
-&lt;!-- 1.  Item three --&gt;
-&lt;!-- 1.  Item four --&gt;
-&lt;!-- ] --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ### And a nested list: --&gt;
-
-&lt;!-- - level 1 item --&gt;
-&lt;!--   - level 2 item --&gt;
-&lt;!--   - level 2 item --&gt;
-&lt;!--     - level 3 item --&gt;
-&lt;!--     - level 3 item --&gt;
-&lt;!-- - level 1 item --&gt;
-&lt;!--   - level 2 item --&gt;
-&lt;!--   - level 2 item --&gt;
-&lt;!--   - level 2 item --&gt;
-&lt;!-- - level 1 item --&gt;
-&lt;!--   - level 2 item --&gt;
-&lt;!--   - level 2 item --&gt;
-&lt;!-- - level 1 item --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ### Nesting an ol in ul in an ol --&gt;
-
-&lt;!-- - level 1 item (ul) --&gt;
-&lt;!--   1. level 2 item (ol) --&gt;
-&lt;!--   1. level 2 item (ol) --&gt;
-&lt;!--     - level 3 item (ul) --&gt;
-&lt;!--     - level 3 item (ul) --&gt;
-&lt;!-- - level 1 item (ul) --&gt;
-&lt;!--   1. level 2 item (ol) --&gt;
-&lt;!--   1. level 2 item (ol) --&gt;
-&lt;!--     - level 3 item (ul) --&gt;
-&lt;!--     - level 3 item (ul) --&gt;
-&lt;!--   1. level 4 item (ol) --&gt;
-&lt;!--   1. level 4 item (ol) --&gt;
-&lt;!--     - level 3 item (ul) --&gt;
-&lt;!--     - level 3 item (ul) --&gt;
-&lt;!-- - level 1 item (ul) --&gt;
-
-&lt;!-- --- --&gt;
-&lt;!-- layout: true --&gt;
-
-&lt;!-- ## Plots --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ```{r plot-example, eval=requireNamespace("ggplot2", quietly=TRUE)} --&gt;
-&lt;!-- library(ggplot2) --&gt;
-&lt;!-- (g &lt;- ggplot(mpg) + aes(hwy, cty, color = class) + geom_point()) --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ```{r plot-example-themed, eval=requireNamespace("ggplot2", quietly=TRUE)} --&gt;
-&lt;!-- g + xaringanthemer::theme_xaringan(text_font_size = 16, title_font_size = 18) + --&gt;
-&lt;!--   ggtitle("A Plot About Cars") --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- --- --&gt;
-&lt;!-- layout: false --&gt;
-
-&lt;!-- ## Square image --&gt;
-
-&lt;!-- &lt;center&gt;&lt;img src="https://octodex.github.com/images/labtocat.png" height="400px" /&gt;&lt;/center&gt; --&gt;
-
-&lt;!-- .footnote[GitHub Octocat] --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ### Wide image --&gt;
-
-&lt;!-- ![](https://guides.github.com/activities/hello-world/branching.png) --&gt;
-
-&lt;!-- .footnote[Wide images scale to 100% slide width] --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ## Two images --&gt;
-
-&lt;!-- .pull-left[ --&gt;
-&lt;!-- ![](https://octodex.github.com/images/motherhubbertocat.png) --&gt;
-&lt;!-- ] --&gt;
-
-&lt;!-- .pull-right[ --&gt;
-&lt;!-- ![](https://octodex.github.com/images/dinotocat.png) --&gt;
-&lt;!-- ] --&gt;
-
-&lt;!-- --- --&gt;
-
-&lt;!-- ### Definition lists can be used with HTML syntax. --&gt;
-
-&lt;!-- &lt;dl&gt; --&gt;
-&lt;!-- &lt;dt&gt;Name&lt;/dt&gt; --&gt;
-&lt;!-- &lt;dd&gt;Godzilla&lt;/dd&gt; --&gt;
-&lt;!-- &lt;dt&gt;Born&lt;/dt&gt; --&gt;
-&lt;!-- &lt;dd&gt;1952&lt;/dd&gt; --&gt;
-&lt;!-- &lt;dt&gt;Birthplace&lt;/dt&gt; --&gt;
-&lt;!-- &lt;dd&gt;Japan&lt;/dd&gt; --&gt;
-&lt;!-- &lt;dt&gt;Color&lt;/dt&gt; --&gt;
-&lt;!-- &lt;dd&gt;Green&lt;/dd&gt; --&gt;
-&lt;!-- &lt;/dl&gt; --&gt;
 ---
 # Referências
 
