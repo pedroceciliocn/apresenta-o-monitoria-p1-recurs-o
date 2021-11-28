@@ -320,6 +320,10 @@ A partir dos exemplos ilustrativos anteriores, podemos então definir 3 regras b
 3. deve **chamar a si mesmo**, recursivamente.
 
 ---
+# Exercícios
+ 1. Faça um programa usando função **recursiva** para calcular o **MDC** (máximo divisor comum) entre dois números.
+ 2. Faça um programa usando **recursão** que retorne `True` caso um **número** ou uma **string** seja um [**palíndromo**](https://en.wikipedia.org/wiki/Palindrome) e `False` caso contrário.
+---
 ### Vídeo - What on Earth is Recursion? - Computerphile
 <iframe width="1100" height="540" src="https://www.youtube.com/embed/Mv9NEXX1VHc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
